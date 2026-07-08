@@ -1,42 +1,62 @@
-# Predator
-This repository contains tools and automation that will benefit everyone in both Kali Linux and Termux environments
-# 🛡️ Predator Basic Toolbox v2.0
+#!bin/bash
+echo -e "${RED}"
+figlet -f slant "Predator"
+echo -e "${NC}"
+GREEN='\033[1;32m'
+RED='\033[1;31m'
+NC='\033[0m'
+clear
+while true; do
+echo -e "${GREEN}─── ⋆⋅☆⋅⋆ ── Predator_Basic_Toolbox v2.0 ─── ⋆⋅☆⋅⋆ ───${NC}"
+echo -e "${RED}=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»${NC}"
+echo -e "${GREEN}{1} Update & Upgrade termux${NC}"
+echo -e "${GREEN}{2} Clean termux cache${NC}"
+echo -e "${GREEN}{3} Delete all packages${NC}"
+echo -e "${GREEN}{4} Termux change repo${NC}"
+echo -e "${GREEN}{5} Auto-Fix Corrupted Packages (Fix DPKG Error)${NC}"
+echo -e "${GREEN}{6} Enable Termux Extra Keys Keyboard${NC}"
+echo -e "${GREEN}{7} Termux-setup-storage${NC}"
+echo -e "${GREEN}{8} Exit${NC}"
+echo -e "${RED}=»=»=»=»=»=»==»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»${NC}"
+echo -e -n "${GREEN}Enter the number ="
+read choise
 
-أداة إحترافية مصممة خصيصاً ل Termux تدمج أهم الأوامر الأساسية و أدوات الصيانة و خبايا إدارة النظام و إصلاح أخطائه بضغطة زر واحدة فالكثير من المبتدئين في هذا المجال ينسون تلك الأوامر المهمة أثناء إستخدامهم ل Termux و ربما لا يعرفون أغلبها و لهذا السبب تحدث أخطاء في ال Termux لديهم و لا يعرفون الحل و لهذا جمعت كل تلك الأوامر المهمة في أداة واحدة لكي توفر وقتاً و مجهوداً و لكي لا تواجهون صعوبة أثناء إستخدام Termux و لكي لا تواجهون صعوبة في تجميعها أيضاً و هذه الأداة ليست فقط للمبتدئين و إنما للمحترفين أيضاً 
+if [ "$choise" == "1" ]; then
+     pkg update -y
+     pkg upgrade -y
+     echo -e "${GREEN}✓ Done${NC}"
 
-## الميزات والخصائص ( Features )
-ماذا تفعل تلك الأداة ؟
-* **{1} هذا الإختيار تحديث و ترقية لنظام Termux .**
+elif [ "$choise" == "2" ]; then
+     apt-get clean
+     pkg clean
+     rm -rf $PREFIX/tmp/*
+     rm -rf ~/.cache/*
+     echo -e "${GREEN}✓ All junk files and cache cleared successfully!${NC}"
+/
+elif [ "$choise" == "3" ]; then
+     pkg wipe
+     echo -e "${GREEN}✓ Done${NC}"
 
-* **{2} هذا الإختيار سيفيدك إذا كنت تريد تنظيف عميق لملفات ال Cache و الملفات المهملة و تنظيف مساحة الجهاز من الملفات التي ليس لها فائدة التي تتركها الأدوات و نظام Termux و يوفر لك مساحة على جهازك .**
+elif [ "$choise" == "4" ]; then
+     termux-change-repo
+     echo -e "${GREEN}✓ Done${NC}"
 
-* **{3} هذا الإختيار لحذف جميع الأدوات و الملفات في Termux و هذا الإختيار سيفيدك إذا كانت لديك أخطاء في نظام Termux و الكثير من الأدوات التي ليس لها فائدة و تريد التخلص منهم بضغطة زر واحدة .**
+elif [ "$choise" == "5" ] ; then
+     dpkg --configure -a
+     apt-get install -f -y
+     echo -e "${GREEN}✓ Package manager fixed and ready!${NC}"
 
-* **{4} هذا الإختيار سيفيدك إذا كنت تواجه مشكلة في سيرفر تحميل الأدوات و الحزم فهو يعمل على تغيير المستودعات إذا كنت تواجه بطئ في التحميل أو إنقطاع مفاجئ أثناء تحميل الحزم و الأدوات الخاصة بك و يجعلك تختار سيرفر أو مستودع أخر أسرع و أقرب لمكانك لكي يكون تحميل الأدوات و الحزم سريعاً .**
+elif [ "$choise" == "6" ]; then
+     mkdir -p ~/.termux
+     echo "extra-keys = [['ESC','/','-','HOME','UP','END','PGUP'],['TAB','CTRL','ALT','LEFT','DOWN','RIGHT','PGDN']]" > ~/.termux/termux.properties
+     termux-reload-settings
+     echo -e "${GREEN}✓ Extra keys enabled successfully!${NC}"
 
-* **{5} هذا الإختيار سيفيدك في تصليح الأخطاء العالقة في Termux التي لا يمكن إصلاحها بالطرق المعتادة الأخرى و مشاكل الحزم المكسورة ( Broken Packages ) أو عندما يتوقف التحميل فجأة و يظهر لك رسالة خطأ ال Dpkg فإن هذا الأمر يكمل التثبيت و يصلح قواعد البيانات فوراً بضغطة واحدة و يمكنك إختيار هذا الأمر قبل البدء بتحميل أي أداة .**
+elif [ "$choise" == "7" ]; then
+     termux-setup-storage
 
-* **{6} هذا الإختيار لتفعيل الكيبورد الإضافي ( شريط أزرار التحكم في التيرمينال مثل ESC / End / Home / CTRL ) لأن بعض الهواتف عند إستخدام ال Termux يحدث بها خطأ و لا تظهر تلك النافذة التي بداخلها أزرار التحكم في التيرمينال و هذا الإختيار يجبر Termux على إظهار شريط التحكم هذا فوق الكيبورد الأصلية الخاصة بك فوراً .**
+elif ["$choise" == "8" ]; then
+     exit
+fi
 
-* **{7} هذا الإختيار يعطي صلاحية ل Termux بالوصول الى ذاكرة التخزين .**
-
-* **{8} هذا الإختيار لإغلاق الأداة .**
-
-## 💻 طريقة التثبيت و التشغيل ( Installation )
-
-إفتح تطبيق Termux و إكتب الأوامر التالية بالترتيب:
-
-```bash
-# تحديث النظام و تثبيت أداة جيت
-pkg update && pkg upgrade -y
-pkg install git -y
-
-# تحميل الأداة من المستودع
-git clone [https://github.com/exepredator/Exe_Basic_Toolbox.git](https://github.com/exepredator/Exe_Basic_Toolbox.git)
-
-# الدخول لمسار الأداة
-cd Exe_Basic_Toolbox
-
-# إعطاء صلاحية التنفيذ وتشغيل السكريبت
-chmod +x Predator_Basic_Toolbox.sh
-./Predator_Basic_Toolbox.sh
+done
