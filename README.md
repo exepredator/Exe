@@ -2,13 +2,13 @@
 echo -e "${RED}"
 figlet -f slant "Predator"
 echo -e "${NC}"
-GREEN='\033[1;32m'
-RED='\033[1;31m'
+GREEN='\e[0;32m'
+YELLOW='\e[0;33m'
 NC='\033[0m'
 clear
 while true; do
 echo -e "${GREEN}─── ⋆⋅☆⋅⋆ ── Predator_Basic_Toolbox v2.0 ─── ⋆⋅☆⋅⋆ ───${NC}"
-echo -e "${RED}=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»${NC}"
+echo -e "${YELLOW}=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»${NC}"
 echo -e "${GREEN}{1} Update & Upgrade termux${NC}"
 echo -e "${GREEN}{2} Clean termux cache${NC}"
 echo -e "${GREEN}{3} Delete all packages${NC}"
@@ -17,7 +17,7 @@ echo -e "${GREEN}{5} Auto-Fix Corrupted Packages (Fix DPKG Error)${NC}"
 echo -e "${GREEN}{6} Enable Termux Extra Keys Keyboard${NC}"
 echo -e "${GREEN}{7} Termux-setup-storage${NC}"
 echo -e "${GREEN}{8} Exit${NC}"
-echo -e "${RED}=»=»=»=»=»=»==»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»${NC}"
+echo -e "${YELLOW}=»=»=»=»=»=»==»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»=»${NC}"
 echo -e -n "${GREEN}Enter the number ="
 read choise
 
